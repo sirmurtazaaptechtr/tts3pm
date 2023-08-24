@@ -25,9 +25,7 @@ if($percentage >= 80.0){
     echo "<p>Marks : $obtainedmarks/$maxmarks  <br />Percentage : $percentage% <br />Grade : F</p>";
 }
 
-$num1 = 10;
-$num2 = 5;
-$op = '/';
+$num1 = 10;$num2 = 5;$op = '/';
 switch($op){
     case '+':
         $res = $num1 + $num2;
