@@ -68,6 +68,7 @@
         ["Name"=>"Clayton Francis","DOB"=>"26-Jul-2004"],
         ["Name"=>"Anshara Rizwan","DOB"=>"03-Nov-2004"]
     );
+    pr($students);
 
     foreach($students as $student) {
         echo "<p>";
