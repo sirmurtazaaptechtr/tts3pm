@@ -1,5 +1,6 @@
 <?php
     date_default_timezone_set("Asia/Karachi");
+    include('include/header.php');
 
     // date(format,timestamp) format:Required. Specifies the format of the timestamp. timestamp:Optional. Specifies a timestamp. Default is the current date and time
 
@@ -43,4 +44,6 @@
     $thedate = strtotime("19-Nov-2005");
     $dt =  date("l, j F Y h:i:sa",$thedate);
     echo "<p> $dt </p>";
+
+    include('include/footer.php');
 ?>
