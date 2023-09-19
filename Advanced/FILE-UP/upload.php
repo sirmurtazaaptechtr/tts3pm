@@ -15,17 +15,15 @@
         </div>';
         $uploadOk = false;
     }
-
     // Check file size not > 1MB
     if ($_FILES["fileToUpload"]["size"] > 1242880) {
         echo '
-        
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>Sorry!</strong> your file is too large.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
-    $uploadOk = 0;
-  }
+        $uploadOk = false;
+    }
     // Check if $uploadOk is set to 0 by an error
     if (!$uploadOk) {
         echo '
