@@ -1,0 +1,62 @@
+[
+    {
+      "name": "Belgian Waffles",
+      "price": "$5.95",
+      "description": "Two of our famous Belgian Waffles with plenty of real maple syrup",
+      "calories": "650"
+    },
+    {
+      "name": "Strawberry Belgian Waffles",
+      "price": "$7.95",
+      "description": "Light Belgian waffles covered with strawberries and whipped cream",
+      "calories": "900"
+    },
+    {
+      "name": "Berry-Berry Belgian Waffles",
+      "price": "$8.95",
+      "description": "Light Belgian waffles covered with an assortment of fresh berries and whipped cream",
+      "calories": "900"
+    },
+    {
+      "name": "French Toast",
+      "price": "$4.50",
+      "description": "Thick slices made from our homemade sourdough bread",
+      "calories": "600"
+    },
+    {
+      "name": "Homestyle Breakfast",
+      "price": "$6.95",
+      "description": "Two eggs, bacon or sausage, toast, and our ever-popular hash browns",
+      "calories": "950"
+    },
+    {
+        "name": "Pancakes",
+        "price": 5.25,
+        "description": "A stack of fluffy pancakes served with butter and syrup",
+        "calories": 700
+    },
+    {
+        "name": "Blueberry Pancakes",
+        "price": 6.50,
+        "description": "Pancakes loaded with fresh blueberries and drizzled with syrup",
+        "calories": 800
+    },
+    {
+        "name": "Eggs Benedict",
+        "price": 8.75,
+        "description": "Poached eggs, Canadian bacon, and hollandaise sauce on an English muffin",
+        "calories": 750
+    },
+    {
+        "name": "Omelette",
+        "price": 7.95,
+        "description": "A fluffy omelette with your choice of fillings and toast",
+        "calories": 600
+    },
+    {
+        "name": "Vegetarian Omelette",
+        "price": 8.50,
+        "description": "A vegetarian omelette with mushrooms, peppers, and onions, served with toast",
+        "calories": 550
+    }
+  ]
