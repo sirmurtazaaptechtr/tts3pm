@@ -9,3 +9,24 @@
     if($conn) {
         echo "$database is connected successfully";
     }
+
+// Extra Functions
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    function pr($input) {
+        echo "<pre>";
+        print_r($input);
+        echo "</pre>";
+    }
+
+    function prx($input) {
+        echo "<pre>";
+        print_r($input);
+        echo "</pre>";
+        die();
+    }

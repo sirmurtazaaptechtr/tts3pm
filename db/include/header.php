@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+  <title>My School</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -45,9 +45,9 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block">My School</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -276,11 +276,65 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#cities-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-buildings"></i><span>Cities</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="cities-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="cities.php">
+              <i class="bi bi-circle"></i><span>All Cities</span>
+            </a>
+          </li>
+          <li>
+            <a href="addcity.php" class="active">
+              <i class="bi bi-circle"></i><span>Add City</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End cities Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#teachers-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-book"></i><span>Teachers</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="teachers-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="teachers.php">
+              <i class="bi bi-circle"></i><span>All Teachers</span>
+            </a>
+          </li>
+          <li>
+            <a href="addteacher.php" class="active">
+              <i class="bi bi-circle"></i><span>Add Teacher</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End teachers Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#students-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-mortarboard"></i><span>Students</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="students-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="students.php">
+              <i class="bi bi-circle"></i><span>All Students</span>
+            </a>
+          </li>
+          <li>
+            <a href="addstudent.php" class="active">
+              <i class="bi bi-circle"></i><span>Add Student</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End students Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
