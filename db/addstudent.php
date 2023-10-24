@@ -39,6 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
     $city_id = test_input($_POST["city_id"]);
     }
+
+    if(isset($_POST['submit'])) {
+        if($nameErr == '' && $emailErr == '' && $ageErr == '' && $city_idErr == '') {
+            $addnewstudent_sql = "INSERT INTO `users` (`name`, `age`, `email`, `city_id`, `type`) VALUES ('$name', '$age', '$email', '$city_id', 'student')";
+            $isAdded = mysqli_query($conn,$addnewstudent_sql);
+            header('Location: students.php');
+            exit;
+        }
+    }
 }
 
 ?>
@@ -59,34 +68,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Add New Student</h5>
-                        <p><span class="text-danger">* required field</span></p>
+                        <p><p class="text-danger">* required field</p></p>
                         <!-- General Form Elements -->
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="row mb-3">
                                 <label for="name" class="col-sm-2 col-form-label">Name</label>
-                                <div class="col-sm-10">
-                                    <span class="text-danger">* <?php echo $nameErr; ?></span>
+                                <div class="col-sm-5">
                                     <input type="text" name="name" id="name" class="form-control" value="<?php echo $name; ?>">
                                 </div>
+                                <p class="text-danger col-sm-5">* <?php echo $nameErr; ?></p>
                             </div>
                             <div class="row mb-3">
                                 <label for="email" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-10">
-                                    <span class="text-danger">* <?php echo $emailErr; ?></span>
-                                    <input type="email" name="eamil" id="email" class="form-control" value="<?php echo $email; ?>">
+                                <div class="col-sm-5">
+                                    <input type="email" name="email" id="email" class="form-control" value="<?php echo $email; ?>">
                                 </div>
+                                <p class="text-danger col-sm-5">* <?php echo $emailErr; ?></p>
                             </div>
                             <div class="row mb-3">
                                 <label for="age" class="col-sm-2 col-form-label">Age</label>
-                                <div class="col-sm-10">
-                                    <span class="text-danger">* <?php echo $ageErr; ?></span>
+                                <div class="col-sm-5">
                                     <input type="number" name="age" id="age" min="1" class="form-control" value="<?php echo $age; ?>">
                                 </div>
+                                <p class="text-danger col-sm-5">* <?php echo $ageErr; ?></p>
                             </div>
                             <div class="row mb-3">
                                 <label for="citiesDataList" class="col-sm-2 col-form-label">City</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" list="datalistOptions" id="citiesDataList" name="city_id" placeholder="Type to search city..." value="<?php echo $city_id; ?>">
+                                <div class="col-sm-5">
+                                    <input list="datalistOptions" id="citiesDataList" name="city_id" placeholder="Type to search city..." class="form-control" value="<?php echo $city_id; ?>">
                                     <datalist id="datalistOptions">
                                         <?php
                                         $showallcities_sql = "SELECT * FROM `cities`";
@@ -104,9 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Actions</label>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Submit Form</button>
-                                    <button type="clear" class="btn btn-danger">Clear Form</button>
+                                <div class="col-sm-5">
+                                    <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit Form</button>
+                                    <button type="clear" name="clear" id="clear" class="btn btn-danger">Clear Form</button>
                                 </div>
                             </div>
                         </form><!-- End General Form Elements -->

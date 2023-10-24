@@ -1,4 +1,7 @@
-<?php require('include/connection.php'); ?>
+<?php
+ob_start();
+require('include/connection.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
