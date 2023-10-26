@@ -1,6 +1,12 @@
 <?php
 ob_start();
 require('include/connection.php');
+
+if(!$_SESSION['admin_login']) {
+  header('Location: index.php');
+  exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -259,7 +265,7 @@ require('include/connection.php');
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="logout.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -545,6 +551,13 @@ require('include/connection.php');
           <span>Login</span>
         </a>
       </li><!-- End Login Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="logout.php">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li><!-- End Logout Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-error-404.html">
