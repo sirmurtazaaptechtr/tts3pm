@@ -1,13 +1,25 @@
-<?php 
+<?php
+    $message = '';
     include('include/header.php');
-    $showallstudents_sql = "SELECT * FROM `users` JOIN `cities` ON users.city_id = cities.id";
+    $showallstudents_sql = "SELECT *, users.id as userid FROM `users` LEFT JOIN `cities` ON users.city_id = cities.id";
+    $students = mysqli_query($conn,$showallstudents_sql);
 
-    $rows = mysqli_query($conn,$showallstudents_sql);
+    if($_SERVER["REQUEST_METHOD"] == "GET") {
+      if(isset($_GET['userid']) && $_GET['action'] == 'delete') {
+        $userid = $_GET['userid'];
+        $deletestudent_sql = "DELETE FROM `users` WHERE id = $userid";
+        $idDeleted = mysqli_query($conn,$deletestudent_sql);
+        if($idDeleted) {          
+          header('Location: students.php');
+          exit;
+        }       
+      }
+    }
    
 ?>
 <main id="main" class="main">
 
-<div class="pagetitle">
+<div class="pagetitle">  
   <h1>All Students</h1>
   <nav>
     <ol class="breadcrumb">
@@ -35,21 +47,27 @@
                 <th scope="col">Age</th>
                 <th scope="col">Email</th>
                 <th scope="col">City</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
               <?php
               $srno = 1;
-              foreach($rows as $student)
+              foreach($students as $student)
               {
               ?>
               <tr>
                 <th scope="row"><?php echo $srno; ?></th>
-                <td><?php echo $student['id'] ?></td>
+                <td><?php echo $student['userid'] ?></td>
                 <td><?php echo $student['name'] ?></td>
                 <td><?php echo $student['age'] ?></td>
                 <td><?php echo $student['email'] ?></td>
                 <td><?php echo $student['city_name'] ?></td>
+                <td>
+                <div class="btn-group" role="group" aria-label="Action Buttons">
+                  <a type="button" class="btn btn-warning" href="<?php echo 'editstudent.php?userid='.$student['userid'].'&action=edit'?>">Edit</a>
+                  <a type="button" class="btn btn-danger" href="<?php echo '?userid='.$student['userid'].'&action=delete'?>">Delete</a></div>
+                </td>
               </tr>
               <?php
               }
