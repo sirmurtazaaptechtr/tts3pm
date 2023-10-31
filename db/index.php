@@ -3,8 +3,8 @@ require('include/connection.php');
 $userlogin_sql = "SELECT * FROM `users` JOIN `login` ON users.id = login.user_id";
 $logins = mysqli_query($conn,$userlogin_sql);
 
-pr($logins);
-pr($_REQUEST);
+// pr($logins);
+// pr($_REQUEST);
 
 if(isset($_REQUEST['submit'])) {
     $login_flag = false;
@@ -120,7 +120,7 @@ if(isset($_REQUEST['submit'])) {
                       <button class="btn btn-primary w-100" type="submit" name="submit">Login</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
+                      <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
                     </div>
                   </form>
 
