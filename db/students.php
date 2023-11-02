@@ -42,6 +42,7 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
+                <th scope="col">Photo</th>
                 <th scope="col">Student ID</th>
                 <th scope="col">Student Name</th>
                 <th scope="col">Age</th>
@@ -58,6 +59,9 @@
               ?>
               <tr>
                 <th scope="row"><?php echo $srno; ?></th>
+                <td>
+                  <img src="<?php echo $student['image']; ?>" alt="<?php echo $student['name'] ?>" class="img-fluid img-thumbnail">
+                </td>
                 <td><?php echo $student['userid'] ?></td>
                 <td><?php echo $student['name'] ?></td>
                 <td><?php echo $student['age'] ?></td>
@@ -68,8 +72,10 @@
                   <a type="button" class="btn btn-warning" href="<?php echo 'editstudent.php?userid='.$student['userid'].'&action=edit'?>">Edit</a>
                   <a type="button" class="btn btn-danger" href="<?php echo '?userid='.$student['userid'].'&action=delete'?>">Delete</a></div>
                 </td>
+                
               </tr>
               <?php
+              $srno++;
               }
               ?>
             </tbody>

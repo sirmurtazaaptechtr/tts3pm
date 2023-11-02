@@ -1,10 +1,44 @@
 <?php
 include('include/header.php');
 // define variables and set to empty values
+$uploadErr = [];
 $nameErr = $emailErr = $ageErr = $city_idErr = "";
-$name = $email = $age = $city_id = "";
+$target_file = $name = $email = $age = $city_id = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $target_dir = "assets/img/users/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = true;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = true;
+    } else {
+        array_push($uploadErr, "File is not an image.");
+        $uploadOk = false;
+    }
+
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        array_push($uploadErr, "Sorry, file already exists.");
+        $uploadOk = false;
+    }
+
+    // Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        array_push($uploadErr, "Sorry, your file is too large.");
+        $uploadOk = false;
+    }
+
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+        array_push($uploadErr, "Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
+        $uploadOk = false;
+    }
+
     if (empty($_POST["name"])) {
         $nameErr = "Name is required";
     } else {
@@ -41,8 +75,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if(isset($_POST['submit'])) {
-        if($nameErr == '' && $emailErr == '' && $ageErr == '' && $city_idErr == '') {
-            $addnewstudent_sql = "INSERT INTO `users` (`name`, `age`, `email`, `city_id`, `type`) VALUES ('$name', '$age', '$email', '$city_id', 'student')";
+        
+        if(empty($uploadErr) && $nameErr == '' && $emailErr == '' && $ageErr == '' && $city_idErr == '') {
+            // Check if $uploadOk is set to 0 by an error
+            if (!$uploadOk) {
+                array_push($uploadErr, "Sorry, your file was not uploaded.");
+            // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                    echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+                } else {
+                    array_push($uploadErr, "Sorry, there was an error uploading your file.");
+                }
+            }
+            $addnewstudent_sql = "INSERT INTO `users` (`name`, `age`, `email`, `city_id`, `type`,image) VALUES ('$name', '$age', '$email', '$city_id', 'student','$target_file')";
             $isAdded = mysqli_query($conn,$addnewstudent_sql);
             header('Location: students.php');
             exit;
@@ -70,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h5 class="card-title">Add New Student</h5>
                         <p><p class="text-danger">* required field</p></p>
                         <!-- General Form Elements -->
-                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-5">
@@ -111,6 +157,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </datalist>
                                 </div>
                             </div>
+
+                            <div class="row mb-3">
+                                <label for="fileToUpload" class="col-sm-2 col-form-label">Select image</label>
+                                <div class="col-sm-5">
+                                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" aria-label="User Image" required>
+                                    <div class="text-danger col-sm-5">
+                                        <ul><?php foreach($uploadErr as $Err){echo "<li>$Err</li>";} ?></ul>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Actions</label>
                                 <div class="col-sm-5">
@@ -118,6 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <button type="clear" name="clear" id="clear" class="btn btn-danger">Clear Form</button>
                                 </div>
                             </div>
+
                         </form><!-- End General Form Elements -->
                     </div>
                 </div>
