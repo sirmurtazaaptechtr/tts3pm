@@ -1,6 +1,6 @@
 <?php 
     include('include/header.php');
-    $showallteachers_sql = "SELECT * FROM `users` JOIN `cities` ON users.city_id = cities.id";
+    $showallteachers_sql = "SELECT *,users.id as userid FROM `users` JOIN `cities` ON users.city_id = cities.id WHERE type = 'teacher'";
 
     $rows = mysqli_query($conn,$showallteachers_sql);
    
@@ -35,6 +35,7 @@
                 <th scope="col">Age</th>
                 <th scope="col">Email</th>
                 <th scope="col">City</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -45,11 +46,16 @@
               ?>
               <tr>
                 <th scope="row"><?php echo $srno; ?></th>
-                <td><?php echo $teacher['id'] ?></td>
+                <td><?php echo $teacher['userid'] ?></td>
                 <td><?php echo $teacher['name'] ?></td>
                 <td><?php echo $teacher['age'] ?></td>
                 <td><?php echo $teacher['email'] ?></td>
                 <td><?php echo $teacher['city_name'] ?></td>
+                <td>
+                <div class="btn-group" role="group" aria-label="Action Buttons">
+                  <a type="button" class="btn btn-warning" href="<?php echo 'editteacher.php?userid='.$teacher['userid'].'&action=edit'?>">Edit</a>
+                  <a type="button" class="btn btn-danger" href="<?php echo '?userid='.$teacher['userid'].'&action=delete'?>">Delete</a></div>
+                </td>
               </tr>
               <?php
               }

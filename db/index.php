@@ -9,12 +9,15 @@ $logins = mysqli_query($conn,$userlogin_sql);
 if(isset($_REQUEST['submit'])) {
     $login_flag = false;
     foreach($logins as $login) {
-        if($login['username'] == $_REQUEST['username'] && $login['password'] == $_REQUEST['password']) {
+      // Just Admin can login as role_id is 1
+        if($login['username'] == $_REQUEST['username'] && $login['password'] == $_REQUEST['password'] && $login['role_id'] == 1) {
             $login_flag = true;
             $_SESSION['admin_login'] = true;
             $_SESSION['username'] = $login['username'];
             $_SESSION['name'] = $login['name'];
             $_SESSION['email'] = $login['email'];
+            $_SESSION['image'] = $login['image'];            
+            $_SESSION['type'] = $login['type'];            
             break;
         }
     }

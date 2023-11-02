@@ -43,7 +43,8 @@
 <body>
     <?php
     // define variables and set to empty values
-    $uploadErr = $nameErr = $emailErr = $ageErr = $city_idErr = $target_file = "";
+    $uploadErr = [];
+    $nameErr = $emailErr = $ageErr = $city_idErr = $target_file = "";
     $username = $password = $usertype = $role_id = $name = $email = $age = $city_id =
         "";
 
@@ -60,20 +61,20 @@
                 echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = true;
             } else {
-                $uploadErr = "File is not an image.";
+                array_push($uploadErr,"File is not an image.");
                 $uploadOk = false;
             }
         }
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            $uploadErr = "Sorry, file already exists.";
+            array_push($uploadErr,"Sorry, file already exists.");
             $uploadOk = false;
         }
 
         // Check file size
         if ($_FILES["fileToUpload"]["size"] > 500000) {
-            $uploadErr = "Sorry, your file is too large.";
+            array_push($uploadErr,"Sorry, your file is too large.");
             $uploadOk = false;
         }
 
@@ -84,13 +85,13 @@
             $imageFileType != "jpeg" &&
             $imageFileType != "gif"
         ) {
-            $uploadErr = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            array_push($uploadErr,"Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
             $uploadOk = false;
         }
 
         // Check if $uploadOk is set to 0 by an error
         if (!$uploadOk) {
-            $uploadErr = "Sorry, your file was not uploaded.";
+            array_push($uploadErr,"Sorry, your file was not uploaded.");
             // if everything is ok, try to upload file
         } else {
             if (
@@ -103,7 +104,7 @@
                     htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) .
                     " has been uploaded.";
             } else {
-                $uploadErr = "Sorry, there was an error uploading your file.";
+                array_push($uploadErr,"Sorry, there was an error uploading your file.");
             }
         }
         $usertype = test_input($_POST["usertype"]);
@@ -201,7 +202,7 @@
                                     <div class="col-12">
                                         <label for="fileToUpload" class="form-label">Select image to upload</label>
                                         <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" aria-label="User Image" required>
-                                        <div class="invalid-feedback"><?php echo $uploadErr; ?></div>                                        
+                                        <div class="text-danger"><ul><?php foreach($uploadErr as $Err){echo "<li>$Err</li>";} ?></ul></div>
                                     </div>
                                     <div class="col-12">
                                             <fieldset class="row mb-3">

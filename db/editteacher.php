@@ -7,9 +7,9 @@ $userid = $name = $email = $age = $city_id = "";
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if(isset($_GET['userid']) && $_GET['action'] == 'edit') {
         $userid = $_GET['userid'];        
-        $showstudent_sql = "SELECT * FROM `users` WHERE id = $userid";
-        $student = mysqli_query($conn,$showstudent_sql);
-        foreach($student as $data)
+        $showteacher_sql = "SELECT * FROM `users` WHERE id = $userid";
+        $teacher = mysqli_query($conn,$showteacher_sql);
+        foreach($teacher as $data)
         {
             $name = $data['name'];         
             $email = $data['email'];         
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($nameErr == '' && $emailErr == '' && $ageErr == '' && $city_idErr == '') {
             $updatestudent_sql = "UPDATE `users` SET `name` = '$name', `age` = $age, `email` = '$email', `city_id` = $city_id WHERE id = $userid";
             $isUpdated = mysqli_query($conn,$updatestudent_sql);
-            header('Location: students.php');
+            header('Location: teachers.php');
             exit;
         }
     }
@@ -72,12 +72,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Update Student</h1>
+        <h1>Update Teacher</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item"><a href="students.php">Students</a></li>
-                <li class="breadcrumb-item active">Update Student</li>
+                <li class="breadcrumb-item"><a href="teachers.php">Teachers</a></li>
+                <li class="breadcrumb-item active">Update Teacher</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -86,12 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Update Student</h5>
+                        <h5 class="card-title">Update Teacher</h5>
                         <p><p class="text-danger">* required field</p></p>
                         <!-- General Form Elements -->
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="row mb-3">
-                                <label for="userid" class="col-sm-2 col-form-label">Student ID</label>
+                                <label for="userid" class="col-sm-2 col-form-label">Teacher ID</label>
                                 <div class="col-sm-5">
                                     <input type="text" readonly class="form-control-plaintext" id="userid" name="userid" value="<?php echo $userid; ?>">
                                 </div>
