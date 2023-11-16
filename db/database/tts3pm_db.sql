@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2023 at 04:13 PM
+-- Generation Time: Nov 06, 2023 at 03:29 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -501,7 +501,10 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`id`, `username`, `password`, `user_id`, `role_id`) VALUES
 (1, 'admin', 'admin', 36, 1),
 (2, 'saad', 'saad', 37, 2),
-(3, 'aliraza', 'aliraza', 21, 3);
+(3, 'aliraza', 'aliraza', 21, 3),
+(5, 'student1', 'student1', 47, 3),
+(6, 'teach2', 'teach2', 48, 2),
+(7, 'student12', 'student12', 50, 3);
 
 -- --------------------------------------------------------
 
@@ -536,51 +539,59 @@ CREATE TABLE `users` (
   `age` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `city_id` int(11) NOT NULL,
-  `type` varchar(20) NOT NULL
+  `type` varchar(20) NOT NULL,
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `age`, `email`, `city_id`, `type`) VALUES
-(1, 'Ali Khan', 21, 'ali.khan@example.com', 0, 'student'),
-(2, 'Sara Ahmed', 22, 'sara.ahmed@example.com', 0, 'student'),
-(3, 'Mohammad Hassan', 20, 'mohammad.hassan@example.com', 155, 'student'),
-(4, 'Aisha Malik', 23, 'aisha.malik@example.com', 351, 'student'),
-(5, 'Ahmed Raza', 19, 'ahmed.raza@example.com', 114, 'student'),
-(6, 'Fatima Zaidi', 20, 'fatima.zaidi@example.com', 293, 'student'),
-(7, 'Bilal Mahmood', 22, 'bilal.mahmood@example.com', 329, 'student'),
-(8, 'Hina Abbas', 21, 'hina.abbas@example.com', 341, 'student'),
-(9, 'Kamran Ali', 24, 'kamran.ali@example.com', 389, 'student'),
-(10, 'Nadia Khan', 19, 'nadia.khan@example.com', 135, 'student'),
-(11, 'Imran Amin', 23, 'imran.amin@example.com', 154, 'student'),
-(12, 'Sadia Iqbal', 20, 'sadia.iqbal@example.com', 398, 'student'),
-(13, 'Asad Ali', 21, 'asad.ali@example.com', 252, 'student'),
-(14, 'Ayesha Siddiqui', 22, 'ayesha.siddiqui@example.com', 136, 'student'),
-(15, 'Omar Shah', 20, 'omar.shah@example.com', 25, 'student'),
-(16, 'Saima Akhtar', 19, 'saima.akhtar@example.com', 371, 'student'),
-(17, 'Nabeel Ahmed', 24, 'nabeel.ahmed@example.com', 198, 'student'),
-(18, 'Bushra Riaz', 23, 'bushra.riaz@example.com', 299, 'student'),
-(19, 'Adnan Khan', 21, 'adnan.khan@example.com', 1, 'student'),
-(20, 'Fariha Aslam', 22, 'fariha.aslam@example.com', 393, 'student'),
-(21, 'Ali Raza', 19, 'ali@raza.com', 198, 'student'),
-(22, 'Ali Ahmed', 22, 'ali@ahmed.com', 319, 'student'),
-(23, 'a', 12, 'a@e.com', 198, 'student'),
-(24, 'a', 12, 'a@q.com', 19, 'student'),
-(25, 'a', 11, 'a@b.com', 1, 'student'),
-(26, 'aaa', 12, 'aaa@xxx.com', 19, 'student'),
-(27, 'aaa', 22, 'aa@f.com', 14, 'student'),
-(28, 'abc', 12, 'abc@xyz.com', 198, 'student'),
-(29, 'Miss Nadia Khan', 29, 'nadia.khan@example.com', 135, 'teacher'),
-(30, 'Sir Imran Amin', 33, 'imran.amin@example.com', 154, 'teacher'),
-(31, 'Miss Sadia Iqbal', 30, 'sadia.iqbal@example.com', 398, 'teacher'),
-(32, 'Sir Asad Ali', 31, 'asad.ali@example.com', 252, 'teacher'),
-(33, 'Miss Ayesha Siddiqui', 32, 'ayesha.siddiqui@example.com', 136, 'teacher'),
-(34, 'Sir Omar Shah', 30, 'omar.shah@example.com', 25, 'teacher'),
-(35, 'Miss Saima Akhtar', 29, 'saima.akhtar@example.com', 371, 'teacher'),
-(36, 'Sir Syed Murtaza Hussain', 40, 'sirmurtazaaptechtr@outlook.com', 198, 'teacher'),
-(37, 'Sir Saad', 25, 'saad@gmail.com', 198, 'teacher');
+INSERT INTO `users` (`id`, `name`, `age`, `email`, `city_id`, `type`, `image`) VALUES
+(1, 'Ali Khan', 21, 'ali.khan@example.com', 198, 'student', ''),
+(2, 'Sara Ahmed', 16, 'sara.ahmed@example.com', 155, 'student', NULL),
+(3, 'Mohammad Hassan', 20, 'mohammad.hassan@example.com', 155, 'student', NULL),
+(4, 'Aisha Malik', 23, 'aisha.malik@example.com', 351, 'student', NULL),
+(5, 'Ahmed Raza', 19, 'ahmed.raza@example.com', 114, 'student', NULL),
+(6, 'Fatima Zaidi', 20, 'fatima.zaidi@example.com', 293, 'student', NULL),
+(7, 'Bilal Mahmood', 22, 'bilal.mahmood@example.com', 329, 'student', NULL),
+(8, 'Hina Abbas', 21, 'hina.abbas@example.com', 341, 'student', NULL),
+(9, 'Kamran Ali', 24, 'kamran.ali@example.com', 389, 'student', NULL),
+(10, 'Nadia Khan', 19, 'nadia.khan@example.com', 135, 'student', NULL),
+(11, 'Imran Amin', 23, 'imran.amin@example.com', 154, 'student', NULL),
+(12, 'Sadia Iqbal', 20, 'sadia.iqbal@example.com', 398, 'student', NULL),
+(13, 'Asad Ali', 21, 'asad.ali@example.com', 252, 'student', NULL),
+(14, 'Ayesha Siddiqui', 22, 'ayesha.siddiqui@example.com', 136, 'student', NULL),
+(15, 'Omar Shah', 20, 'omar.shah@example.com', 25, 'student', NULL),
+(16, 'Saima Akhtar', 19, 'saima.akhtar@example.com', 371, 'student', NULL),
+(17, 'Nabeel Ahmed', 24, 'nabeel.ahmed@example.com', 198, 'student', NULL),
+(18, 'Bushra Riaz', 23, 'bushra.riaz@example.com', 299, 'student', NULL),
+(19, 'Adnan Khan', 21, 'adnan.khan@example.com', 1, 'student', NULL),
+(20, 'Fariha Aslam', 22, 'fariha.aslam@example.com', 393, 'student', NULL),
+(21, 'Ali Raza', 19, 'ali@raza.com', 198, 'student', NULL),
+(22, 'Ali Ahmed', 22, 'ali@ahmed.com', 319, 'student', NULL),
+(23, 'a', 12, 'a@e.com', 198, 'student', NULL),
+(24, 'a', 12, 'a@q.com', 19, 'student', NULL),
+(25, 'a', 11, 'a@b.com', 1, 'student', NULL),
+(26, 'aaa', 12, 'aaa@xxx.com', 19, 'student', NULL),
+(27, 'aaa', 22, 'aa@f.com', 14, 'student', NULL),
+(28, 'abc', 12, 'abc@xyz.com', 198, 'student', NULL),
+(29, 'Miss Nadia Khan', 29, 'nadia.khan@example.com', 135, 'teacher', NULL),
+(30, 'Sir Imran Amin', 33, 'imran.amin@example.com', 154, 'teacher', NULL),
+(31, 'Miss Sadia Iqbal', 30, 'sadia.iqbal@example.com', 398, 'teacher', NULL),
+(32, 'Sir Asad Ali', 31, 'asad.ali@example.com', 252, 'teacher', NULL),
+(33, 'Miss Ayesha Siddiqui', 32, 'ayesha.siddiqui@example.com', 136, 'teacher', NULL),
+(34, 'Sir Omar Shah', 30, 'omar.shah@example.com', 25, 'teacher', NULL),
+(35, 'Miss Saima Akhtar', 29, 'saima.akhtar@example.com', 371, 'teacher', NULL),
+(36, 'Sir Syed Murtaza Hussain', 40, 'sirmurtazaaptechtr@outlook.com', 198, 'teacher', NULL),
+(37, 'Sir Saad', 25, 'saad@gmail.com', 198, 'teacher', NULL),
+(38, 'Ali Raza', 12, 'ali@raza.com', 1, 'student', NULL),
+(39, 'Huzaifa Khan', 18, 'huzaifakhan@gmail.com', 198, 'student', NULL),
+(40, 'Huzaifa Khan', 18, 'huzaifakhan@gmail.com', 198, 'student', NULL),
+(47, 'Abdullah Ali', 24, 'abdullahali@gmail.com', 198, 'student', 'assets/img/users/abdullahAli.jpg'),
+(48, 'Sir Siraj Baloch', 54, 'sirsirajbaloch@gmail.com', 198, 'teacher', 'assets/img/users/sirajBaloch.jpg'),
+(49, 'Sohaib Anis', 24, 'sohaibanis@gmail.com', 198, 'student', 'assets/img/users/sohaibAnis.jpg'),
+(50, 'Muhammad Urva Elahi', 25, 'muhammadurvaelahi@gmail.com', 198, 'student', 'assets/img/users/muhammadUrvaElahi.png');
 
 --
 -- Indexes for dumped tables
@@ -626,7 +637,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -638,7 +649,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Constraints for dumped tables
